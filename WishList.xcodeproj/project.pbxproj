@@ -15,6 +15,7 @@
 		1FB3EF0C1DE5975000FAB139 /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3EF0B1DE5975000FAB139 /* Wish.swift */; };
 		1FB3EF0E1DE59AD900FAB139 /* WishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3EF0D1DE59AD900FAB139 /* WishTableViewCell.swift */; };
 		1FB3EF121DE5A00A00FAB139 /* AddWishTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */; };
+		1FD083631DE73598003B069B /* WishStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD083621DE73598003B069B /* WishStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1FB3EF0B1DE5975000FAB139 /* Wish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
 		1FB3EF0D1DE59AD900FAB139 /* WishTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishTableViewCell.swift; sourceTree = "<group>"; };
 		1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWishTableViewController.swift; sourceTree = "<group>"; };
+		1FD083621DE73598003B069B /* WishStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */,
 				1FB3EF0D1DE59AD900FAB139 /* WishTableViewCell.swift */,
 				1FB3EF0B1DE5975000FAB139 /* Wish.swift */,
+				1FD083621DE73598003B069B /* WishStore.swift */,
 				1FB3EEFE1DE5944200FAB139 /* Assets.xcassets */,
 				1FB3EF001DE5944200FAB139 /* LaunchScreen.storyboard */,
 				1FB3EF031DE5944200FAB139 /* Info.plist */,
@@ -147,6 +150,7 @@
 			files = (
 				1FB3EF0E1DE59AD900FAB139 /* WishTableViewCell.swift in Sources */,
 				1FB3EF121DE5A00A00FAB139 /* AddWishTableViewController.swift in Sources */,
+				1FD083631DE73598003B069B /* WishStore.swift in Sources */,
 				1FB3EEF81DE5944200FAB139 /* AppDelegate.swift in Sources */,
 				1FB3EF0C1DE5975000FAB139 /* Wish.swift in Sources */,
 				1FB3EF0A1DE594AC00FAB139 /* WishlistViewController.swift in Sources */,
@@ -309,6 +313,7 @@
 				1FB3EF081DE5944200FAB139 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

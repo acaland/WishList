@@ -96,7 +96,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oRl-Dk-YWj">
                             <connections>
-                                <segue destination="dk2-IY-KKO" kind="presentation" id="JEZ-Fz-rji"/>
+                                <segue destination="dk2-IY-KKO" kind="presentation" identifier="addWish" id="JEZ-Fz-rji"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -233,8 +233,7 @@
                         <outlet property="wishLocationTextField" destination="d29-D4-YTb" id="UKF-Kh-2MF"/>
                         <outlet property="wishNameTextField" destination="gfO-Ny-Ga0" id="Fy1-mf-gmn"/>
                         <outlet property="wishPriceTextField" destination="Py2-yc-ry4" id="zP5-o6-edR"/>
-                        <segue destination="twe-2R-HVQ" kind="unwind" identifier="editWish" unwindAction="editWishWithSegue:" id="Soj-hV-avV"/>
-                        <segue destination="twe-2R-HVQ" kind="unwind" identifier="addWish" unwindAction="addNewWishWithSegue:" id="Qzl-Lq-j5R"/>
+                        <segue destination="twe-2R-HVQ" kind="unwind" identifier="goBack" unwindAction="returnToHomeWithSegue:" id="f36-5U-0aA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbP-gq-Pzx" userLabel="First Responder" sceneMemberID="firstResponder"/>

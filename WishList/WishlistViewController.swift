@@ -10,16 +10,22 @@ import UIKit
 
 class WishlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var wishlist: [Wish] = []
+//    var wishlist: [Wish] = []
+    var wishStore: WishStore!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        wishlist = [
-            Wish(name: "Fligth to Tahiti", location: "Tahiti", price: 4000.0, thumbnail: "tahiti"),
-            Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: "macbookpro"),
-            Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: "stratocaster")
-        ]
+//        wishlist = [
+//            Wish(name: "Fligth to Tahiti", location: "Tahiti", price: 4000.0, thumbnail: "tahiti"),
+//            Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: "macbookpro"),
+//            Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: "stratocaster")
+//        ]
+        
+        wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti", price: 4000.0, thumbnail: "tahiti"))
+        wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: "macbookpro"))
+        wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: "stratocaster"))
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -29,22 +35,37 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
             addWishVC.navigationItem.leftBarButtonItem = nil
             addWishVC.title = "Edit wish"
             addWishVC.navigationItem.rightBarButtonItem?.title = "Update"
-            addWishVC.newWish = wishlist[(tableView.indexPathForSelectedRow?.row)!]
+//            addWishVC.newWish = wishlist[(tableView.indexPathForSelectedRow?.row)!]
+            addWishVC.wishToEdit = wishStore.wish(at: (tableView.indexPathForSelectedRow?.row)!)
+        } else if segue.identifier == "addWish" {
+            let navigationController = segue.destination as! UINavigationController
+            let addWishVC = navigationController.topViewController as! AddWishTableViewController
+            addWishVC.wishStore = wishStore
         }
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return wishlist.count
+//            return wishlist.count
+        return wishStore.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "WishCellType", for: indexPath) as! WishTableViewCell
-        cell.nameLabel.text = wishlist[indexPath.row].name
-        cell.locationLabel.text = wishlist[indexPath.row].location
-        cell.priceLabel.text = String(describing: wishlist[indexPath.row].price)
-        cell.thumbnailImageView.image = UIImage(named: wishlist[indexPath.row].thumbnail)
+        
+        let theWish = wishStore.wish(at: indexPath.row)!
+        
+//        cell.nameLabel.text = wishlist[indexPath.row].name
+//        cell.locationLabel.text = wishlist[indexPath.row].location
+//        cell.priceLabel.text = String(describing: wishlist[indexPath.row].price)
+//        cell.thumbnailImageView.image = UIImage(named: wishlist[indexPath.row].thumbnail)
+        
+        cell.nameLabel.text = theWish.name
+        cell.locationLabel.text = theWish.location
+        cell.priceLabel.text = String(describing: theWish.price)
+        cell.thumbnailImageView.image = UIImage(named: theWish.thumbnail)
+        
         return cell
         
 //        let cell = UITableViewCell(style: .default, reuseIdentifier: "DummyCell")
@@ -68,7 +89,8 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: {
                 (action, indexPath) in
                 // delete the selected Wish from array
-                self.wishlist.remove(at: indexPath.row)
+//                self.wishlist.remove(at: indexPath.row)
+                self.wishStore.deleteWish(at: indexPath.row)
                 // delete the row from the tableview
                 //self.tableView.reloadData()
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -77,7 +99,9 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let shareAction = UITableViewRowAction(style: .default, title: "Share", handler: {
                 (action, indexPath) in
-                let message = "My wish for this Xmas is \(self.wishlist[indexPath.row].name)"
+//                let message = "My wish for this Xmas is \(self.wishlist[indexPath.row].name)"
+                let theWish = self.wishStore.wish(at: indexPath.row)
+                let message = "I would to receive a \(theWish!.name)"
                 let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
                 self.present(activityVC, animated: true, completion: nil)
         })
@@ -87,20 +111,25 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    @IBAction func addNewWish(segue: UIStoryboardSegue) {
-        
-        if segue.identifier == "addWish" {
-            let addNewWishVC = segue.source as! AddWishTableViewController
-            wishlist.append(addNewWishVC.newWish)
-            tableView.reloadData()
-        }
-        
-        print("we got back from the add new wish View Controller")
-    }
+//    @IBAction func addNewWish(segue: UIStoryboardSegue) {
+//        
+//        if segue.identifier == "addWish" {
+//            let addNewWishVC = segue.source as! AddWishTableViewController
+////            wishlist.append(addNewWishVC.newWish)
+//            wishStore.add(aWish: addNewWishVC.newWish)
+//            tableView.reloadData()
+//        }
+//        
+//        print("we got back from the add new wish View Controller")
+//    }
     
-    @IBAction func editWish(segue: UIStoryboardSegue) {
-        //print("editing wish")
-        // get the updated value of newWish from the segue.source VC?????
+//    @IBAction func editWish(segue: UIStoryboardSegue) {
+//        //print("editing wish")
+//        // get the updated value of newWish from the segue.source VC?????
+//        tableView.reloadData()
+//    }
+    
+    @IBAction func returnToHome(segue: UIStoryboardSegue) {
         tableView.reloadData()
     }
     
@@ -110,10 +139,14 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        let tempWish = wishlist[sourceIndexPath.row]
-        wishlist.remove(at: sourceIndexPath.row)
-        wishlist.insert(tempWish, at: destinationIndexPath.row)
-        //<#code#>
+//        let tempWish = wishlist[sourceIndexPath.row]
+//        wishlist.remove(at: sourceIndexPath.row)
+//        wishlist.insert(tempWish, at: destinationIndexPath.row)
+        
+        let movedWish = wishStore.wish(at: sourceIndexPath.row)
+        wishStore.deleteWish(at: sourceIndexPath.row)
+        wishStore.add(aWish: movedWish!, at: destinationIndexPath.row)
+        
     }
     
     @IBAction func toggleEditMode(_ sender: UIBarButtonItem) {

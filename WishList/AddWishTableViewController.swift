@@ -10,17 +10,18 @@ import UIKit
 
 class AddWishTableViewController: UITableViewController {
 
-    var newWish: Wish!
+    var wishToEdit: Wish!
+    var wishStore: WishStore!
     
     @IBOutlet weak var wishNameTextField: UITextField!
     @IBOutlet weak var wishLocationTextField: UITextField!
     @IBOutlet weak var wishPriceTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-        if (newWish != nil) {
-            wishNameTextField.text = newWish.name
-            wishLocationTextField.text = newWish.location
-            wishPriceTextField.text = String(describing: newWish.price)
+        if (wishToEdit != nil) {
+            wishNameTextField.text = wishToEdit.name
+            wishLocationTextField.text = wishToEdit.location
+            wishPriceTextField.text = String(describing: wishToEdit.price)
         }
         // cause the keyboard to appear on the first field
         wishNameTextField.becomeFirstResponder()
@@ -38,15 +39,17 @@ class AddWishTableViewController: UITableViewController {
         let name = wishNameTextField.text!
         let location = wishLocationTextField.text!
         if let price = Float(wishPriceTextField.text!) {
-            if newWish == nil { // we are adding a new wish
-                newWish = Wish(name: name, location: location, price: price, thumbnail: "tahiti")
-                performSegue(withIdentifier: "addWish", sender: nil)
+            if wishToEdit == nil { // we are adding a new wish
+                let newWish = Wish(name: name, location: location, price: price, thumbnail: "tahiti")
+                wishStore.add(aWish: newWish)
+//                performSegue(withIdentifier: "addWish", sender: nil)
             } else { // we are editing an existing wish
-                newWish.name = name
-                newWish.location = location
-                newWish.price = price
-                performSegue(withIdentifier: "editWish", sender: nil)
+                wishToEdit.name = name
+                wishToEdit.location = location
+                wishToEdit.price = price
+//                performSegue(withIdentifier: "editWish", sender: nil)
             }
+            performSegue(withIdentifier: "goBack", sender: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "You need to set a price", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

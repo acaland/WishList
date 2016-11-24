@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let wishStore = WishStore()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let navController = window?.rootViewController as! UINavigationController
+        let wishListVC = navController.topViewController as! WishlistViewController
+        wishListVC.wishStore = wishStore
         return true
     }
 
