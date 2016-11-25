@@ -20,7 +20,7 @@
 
 /* Begin PBXFileReference section */
 		1FB3EEF41DE5944200FAB139 /* WishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = WishList/AppDelegate.swift; sourceTree = "<group>"; };
 		1FB3EEFC1DE5944200FAB139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FB3EEFE1DE5944200FAB139 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FB3EF011DE5944200FAB139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,10 +43,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F5CD1FB1DE87DBF00A449B2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */,
+				1FB3EF091DE594AC00FAB139 /* WishlistViewController.swift */,
+			);
+			name = Controllers;
+			path = WishList;
+			sourceTree = "<group>";
+		};
+		1F5CD1FC1DE87DE900A449B2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FB3EF0B1DE5975000FAB139 /* Wish.swift */,
+				1FD083621DE73598003B069B /* WishStore.swift */,
+			);
+			name = Model;
+			path = WishList;
+			sourceTree = "<group>";
+		};
+		1F5CD1FD1DE87E0400A449B2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FB3EF0D1DE59AD900FAB139 /* WishTableViewCell.swift */,
+			);
+			name = Views;
+			path = WishList;
+			sourceTree = "<group>";
+		};
 		1FB3EEEB1DE5944200FAB139 = {
 			isa = PBXGroup;
 			children = (
-				1FB3EEF61DE5944200FAB139 /* WishList */,
+				1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */,
+				1F5CD1FC1DE87DE900A449B2 /* Model */,
+				1F5CD1FD1DE87E0400A449B2 /* Views */,
+				1F5CD1FB1DE87DBF00A449B2 /* Controllers */,
+				1FB3EEF61DE5944200FAB139 /* Resources */,
 				1FB3EEF51DE5944200FAB139 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,20 +92,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1FB3EEF61DE5944200FAB139 /* WishList */ = {
+		1FB3EEF61DE5944200FAB139 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1FB3EF091DE594AC00FAB139 /* WishlistViewController.swift */,
-				1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */,
 				1FB3EEFB1DE5944200FAB139 /* Main.storyboard */,
-				1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */,
-				1FB3EF0D1DE59AD900FAB139 /* WishTableViewCell.swift */,
-				1FB3EF0B1DE5975000FAB139 /* Wish.swift */,
-				1FD083621DE73598003B069B /* WishStore.swift */,
 				1FB3EEFE1DE5944200FAB139 /* Assets.xcassets */,
 				1FB3EF001DE5944200FAB139 /* LaunchScreen.storyboard */,
 				1FB3EF031DE5944200FAB139 /* Info.plist */,
 			);
+			name = Resources;
 			path = WishList;
 			sourceTree = "<group>";
 		};

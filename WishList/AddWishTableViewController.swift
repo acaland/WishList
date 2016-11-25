@@ -56,6 +56,4 @@ class AddWishTableViewController: UITableViewController {
             present(alert, animated: true, completion: nil)
         }
     }
-
-
 }
