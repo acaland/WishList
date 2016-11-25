@@ -36,4 +36,15 @@ class WishStore {
             wishlist.remove(at: index)
         }
     }
+    
+    func filter(searchText: String) -> [Wish] {
+        var searchResults: [Wish] = []
+        for wish in wishlist {
+            if wish.name.localizedCaseInsensitiveContains(searchText) {
+                searchResults.append(wish)
+            }
+        }
+        return searchResults
+    }
+    
 }

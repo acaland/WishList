@@ -6,7 +6,7 @@
 //  Copyright © 2016 Antonio Calanducci. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Wish {
     var name: String
