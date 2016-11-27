@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F5CD2001DEAFB4900A449B2 /* tahiti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CD1FF1DEAFB4900A449B2 /* tahiti.jpg */; };
+		1F5CD2021DEAFB5D00A449B2 /* macbookpro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CD2011DEAFB5D00A449B2 /* macbookpro.jpg */; };
+		1F5CD2041DEAFB6E00A449B2 /* stratocaster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F5CD2031DEAFB6E00A449B2 /* stratocaster.jpg */; };
 		1FB3EEF81DE5944200FAB139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */; };
 		1FB3EEFD1DE5944200FAB139 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB3EEFB1DE5944200FAB139 /* Main.storyboard */; };
 		1FB3EEFF1DE5944200FAB139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FB3EEFE1DE5944200FAB139 /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F5CD1FF1DEAFB4900A449B2 /* tahiti.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tahiti.jpg; sourceTree = "<group>"; };
+		1F5CD2011DEAFB5D00A449B2 /* macbookpro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = macbookpro.jpg; sourceTree = "<group>"; };
+		1F5CD2031DEAFB6E00A449B2 /* stratocaster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stratocaster.jpg; sourceTree = "<group>"; };
 		1FB3EEF41DE5944200FAB139 /* WishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FB3EEFC1DE5944200FAB139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +49,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F5CD1FE1DEAFB2800A449B2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1F5CD1FF1DEAFB4900A449B2 /* tahiti.jpg */,
+				1F5CD2011DEAFB5D00A449B2 /* macbookpro.jpg */,
+				1F5CD2031DEAFB6E00A449B2 /* stratocaster.jpg */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		1FB3EEEB1DE5944200FAB139 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +78,7 @@
 		1FB3EEF61DE5944200FAB139 /* WishList */ = {
 			isa = PBXGroup;
 			children = (
+				1F5CD1FE1DEAFB2800A449B2 /* images */,
 				1FB3EF091DE594AC00FAB139 /* WishlistViewController.swift */,
 				1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */,
 				1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */,
@@ -135,9 +152,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5CD2001DEAFB4900A449B2 /* tahiti.jpg in Resources */,
 				1FB3EF021DE5944200FAB139 /* LaunchScreen.storyboard in Resources */,
 				1FB3EEFF1DE5944200FAB139 /* Assets.xcassets in Resources */,
 				1FB3EEFD1DE5944200FAB139 /* Main.storyboard in Resources */,
+				1F5CD2021DEAFB5D00A449B2 /* macbookpro.jpg in Resources */,
+				1F5CD2041DEAFB6E00A449B2 /* stratocaster.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

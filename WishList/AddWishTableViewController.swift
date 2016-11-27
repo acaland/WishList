@@ -8,17 +8,12 @@
 
 import UIKit
 
-protocol AddWishTableViewControllerDelegate: class{
-    func addWishTableViewControllerDidCancel()
-    func addWishTableViewController(didFinishAdding wish: Wish)
-}
 
 class AddWishTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var wishToEdit: Wish!
-//    var wishStore: WishStore!
+    var wishStore: WishStore!
     
-    weak var delegate: AddWishTableViewControllerDelegate?
     
     @IBOutlet weak var wishNameTextField: UITextField!
     @IBOutlet weak var wishLocationTextField: UITextField!
@@ -33,7 +28,7 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
             wishLocationTextField.text = wishToEdit.location
             wishPriceTextField.text = String(describing: wishToEdit.price)
             wishImageView.image = wishToEdit.thumbnail
-            wishImageView.contentMode = .scaleAspectFill
+//            wishImageView.contentMode = .scaleAspectFill
         }
         // cause the keyboard to appear on the first field
         wishNameTextField.becomeFirstResponder()
@@ -42,8 +37,8 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
     @IBAction func close(_ sender: UIBarButtonItem) {
         // cause the keyboard to disappear
         tableView.endEditing(true)
-//        dismiss(animated: true, completion: nil)
-        delegate?.addWishTableViewControllerDidCancel()
+        dismiss(animated: true, completion: nil)
+    
     }
     
     
@@ -54,8 +49,7 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
         if let price = Float(wishPriceTextField.text!) {
             if wishToEdit == nil { // we are adding a new wish
                 let newWish = Wish(name: name, location: location, price: price, thumbnail: wishImageView.image!)
-//                wishStore.add(aWish: newWish)
-                delegate?.addWishTableViewController(didFinishAdding: newWish)
+                wishStore.add(aWish: newWish)
 //                performSegue(withIdentifier: "addWish", sender: nil)
             } else { // we are editing an existing wish
                 wishToEdit.name = name
@@ -94,9 +88,10 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("immagine scelta")
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            wishImageView.image = image
+        
+        if let newImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            print("immagine scelta")
+            wishImageView.image = newImage
             wishImageView.contentMode = .scaleAspectFill
             
         }

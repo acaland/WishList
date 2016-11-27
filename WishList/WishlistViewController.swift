@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WishlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, AddWishTableViewControllerDelegate {
+class WishlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
 
 //    var wishlist: [Wish] = []
     var wishStore: WishStore!
@@ -24,10 +24,11 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
 //            Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: "macbookpro"),
 //            Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: "stratocaster")
 //        ]
+        let imagePath = Bundle.main.resourcePath!
         
-        wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti", price: 4000.0, thumbnail: UIImage(named: "tahiti")!))
-        wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: UIImage(named: "macbookpro")!))
-        wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: UIImage(named: "stratocaster")!))
+        wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti", price: 4000.0, thumbnail: UIImage(contentsOfFile: imagePath + "/tahiti.jpg")!))
+        wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: UIImage(contentsOfFile: imagePath + "/macbookpro.jpg")!))
+        wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: UIImage(contentsOfFile: imagePath + "/stratocaster.jpg")!))
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -48,8 +49,7 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
         } else if segue.identifier == "addWish" {
             let navigationController = segue.destination as! UINavigationController
             let addWishVC = navigationController.topViewController as! AddWishTableViewController
-//            addWishVC.wishStore = wishStore
-            addWishVC.delegate = self 
+            addWishVC.wishStore = wishStore
         }
     }
     
@@ -186,17 +186,6 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
     }
-    
-    func addWishTableViewControllerDidCancel() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func addWishTableViewController(didFinishAdding wish: Wish) {
-        wishStore.add(aWish: wish)
-    }
-    
-    
-    
 }
 
 
