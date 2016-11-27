@@ -6,15 +6,15 @@
 //  Copyright © 2016 Antonio Calanducci. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Wish {
     var name: String
     var location: String
     var price: Float 
-    var thumbnail: String
+    var thumbnail: UIImage
     
-    init(name: String, location: String, price: Float, thumbnail: String) {
+    init(name: String, location: String, price: Float, thumbnail: UIImage) {
         self.name = name
         self.location = location
         self.price = price

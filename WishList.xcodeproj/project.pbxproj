@@ -63,9 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				1FB3EF091DE594AC00FAB139 /* WishlistViewController.swift */,
+				1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */,
 				1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */,
 				1FB3EEFB1DE5944200FAB139 /* Main.storyboard */,
-				1FB3EF111DE5A00A00FAB139 /* AddWishTableViewController.swift */,
 				1FB3EF0D1DE59AD900FAB139 /* WishTableViewCell.swift */,
 				1FB3EF0B1DE5975000FAB139 /* Wish.swift */,
 				1FD083621DE73598003B069B /* WishStore.swift */,
