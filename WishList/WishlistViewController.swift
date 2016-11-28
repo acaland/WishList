@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WishlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class WishlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, AddWishTableViewControllerDelegate {
 
     var wishStore: WishStore!
     var searchResults: [Wish] = []
@@ -19,9 +19,9 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         
-        wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti", price: 4000.0, thumbnail: UIImage(named: "tahiti")!))
-        wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Apple Store", price: 2500.0, thumbnail: UIImage(named: "macbookpro")!))
-        wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano", price: 1500.00, thumbnail: UIImage(named: "stratocaster")!))
+        wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti Polinesia Francese", price: 4000.0, thumbnail: UIImage(named: "tahiti")!))
+        wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Via Curiel 25, Rozzano", price: 2500.0, thumbnail: UIImage(named: "macbookpro")!))
+        wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano, Napoli", price: 1500.00, thumbnail: UIImage(named: "stratocaster")!))
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -40,7 +40,8 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
         } else if segue.identifier == "addWish" {
             let navigationController = segue.destination as! UINavigationController
             let addWishVC = navigationController.topViewController as! AddWishTableViewController
-            addWishVC.wishStore = wishStore
+//            addWishVC.wishStore = wishStore
+            addWishVC.delegate = self
         }
     }
     
@@ -108,6 +109,16 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
             searchResults = wishStore.filter(text: searchText)
             tableView.reloadData()
         }
+    }
+    
+    
+    func addWishTableViewControllerDidCancel() {
+        print("AddWishTVController has been cancelled")
+    }
+    
+    func addWishTableViewController(didFinishAdding wish: Wish) {
+        wishStore.add(aWish: wish)
+        dismiss(animated: true, completion: nil)
     }
     
     
