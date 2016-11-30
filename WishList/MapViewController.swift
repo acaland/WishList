@@ -19,7 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         mapView.delegate = self
-        title = currentWish.name
+        title = currentWish?.name
         
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(currentWish.location, completionHandler: { placemarks, error in

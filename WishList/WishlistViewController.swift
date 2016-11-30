@@ -22,7 +22,7 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
         wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti Polinesia Francese", price: 4000.0, thumbnail: UIImage(named: "tahiti")!))
         wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Via Curiel 25, Rozzano", price: 2500.0, thumbnail: UIImage(named: "macbookpro")!))
         wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano, Napoli", price: 1500.00, thumbnail: UIImage(named: "stratocaster")!))
-        
+    
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -125,6 +125,8 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         tableView.reloadData()
     }
+    
+    
     
     @IBAction func toggleEditMode(_ sender: UIBarButtonItem) {
         if tableView.isEditing {

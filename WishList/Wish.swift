@@ -12,7 +12,7 @@ class Wish {
     var name: String
     var location: String
     var price: Float 
-    var thumbnail: UIImage
+    var thumbnail: UIImage?
     
     init(name: String, location: String, price: Float, thumbnail: UIImage) {
         self.name = name

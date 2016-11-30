@@ -46,4 +46,5 @@ class WishStore {
         }
         return results
     }
+    
  }

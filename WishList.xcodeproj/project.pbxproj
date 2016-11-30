@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F0F3DDD1DEC3EE600E5BD6C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F0F3DDC1DEC3EE600E5BD6C /* MapKit.framework */; };
 		1F0F3DDF1DEC74F700E5BD6C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0F3DDE1DEC74F700E5BD6C /* MapViewController.swift */; };
+		1F101F981DEF75D100515D3E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F101F971DEF75D100515D3E /* LocationManager.swift */; };
 		1FB3EEF81DE5944200FAB139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */; };
 		1FB3EEFD1DE5944200FAB139 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB3EEFB1DE5944200FAB139 /* Main.storyboard */; };
 		1FB3EEFF1DE5944200FAB139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FB3EEFE1DE5944200FAB139 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		1F0F3DDC1DEC3EE600E5BD6C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1F0F3DDE1DEC74F700E5BD6C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1F101F971DEF75D100515D3E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1FB3EEF41DE5944200FAB139 /* WishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB3EEF71DE5944200FAB139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FB3EEFC1DE5944200FAB139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				1FB3EF0B1DE5975000FAB139 /* Wish.swift */,
 				1FD083621DE73598003B069B /* WishStore.swift */,
 				1FB3EEFE1DE5944200FAB139 /* Assets.xcassets */,
+				1F101F971DEF75D100515D3E /* LocationManager.swift */,
 				1FB3EF001DE5944200FAB139 /* LaunchScreen.storyboard */,
 				1FB3EF031DE5944200FAB139 /* Info.plist */,
 			);
@@ -174,6 +177,7 @@
 				1FD083631DE73598003B069B /* WishStore.swift in Sources */,
 				1FB3EEF81DE5944200FAB139 /* AppDelegate.swift in Sources */,
 				1FB3EF0C1DE5975000FAB139 /* Wish.swift in Sources */,
+				1F101F981DEF75D100515D3E /* LocationManager.swift in Sources */,
 				1FB3EF0A1DE594AC00FAB139 /* WishlistViewController.swift in Sources */,
 				1F0F3DDF1DEC74F700E5BD6C /* MapViewController.swift in Sources */,
 			);

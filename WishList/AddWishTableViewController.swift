@@ -14,6 +14,12 @@ protocol AddWishTableViewControllerDelegate: class {
     func addWishTableViewController(didFinishAdding wish: Wish)
 }
 
+private let lazyLoadedVar:String = {
+   print("ciao a tutti")
+    return "ciao"
+}()
+
+
 class AddWishTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var wishToEdit: Wish!
@@ -21,10 +27,12 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
 
     weak var delegate: AddWishTableViewControllerDelegate?
     
+    
     @IBOutlet weak var wishNameTextField: UITextField!
     @IBOutlet weak var wishLocationTextField: UITextField!
     @IBOutlet weak var wishPriceTextField: UITextField!
     @IBOutlet weak var wishImageView: UIImageView!
+    
     
     @IBOutlet var mapView: MKMapView!
     
@@ -36,45 +44,53 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
             wishPriceTextField.text = String(describing: wishToEdit.price)
             wishImageView.image = wishToEdit.thumbnail
             wishImageView.contentMode = .scaleAspectFill
+            
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showMap))
             mapView.addGestureRecognizer(tapGestureRecognizer)
             
-            let geoCoder = CLGeocoder()
-            geoCoder.geocodeAddressString(wishToEdit.location, completionHandler: {
-                placemarks, error in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                if let placemarks = placemarks {
-                    let placemark = placemarks[0]
-                    let annotation = MKPointAnnotation()
-                   
-                    if let location = placemark.location {
-                        annotation.coordinate = location.coordinate
-                        self.mapView.addAnnotation(annotation)
-                        
-//                        var center = CLLocationCoordinate2D(latitude: 15.0, longitude: 17.0)
-                        
-                        let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 250, 250)
-                        self.mapView.setRegion(region, animated: false)
-                    }
-                }
-            
-            })
+            configureMap(location: wishToEdit.location)
+          
         }
         wishNameTextField.becomeFirstResponder()
     }
     
    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.row == 0 {
-            return indexPath
-        } else {
-            return nil
-        }
+    func configureMap(location: String) {
+        
+
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(location, completionHandler: {
+            placemarks, error in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            if let placemarks = placemarks {
+                let placemark = placemarks[0]
+                let annotation = MKPointAnnotation()
+                
+                if let location = placemark.location {
+                    annotation.coordinate = location.coordinate
+                    self.mapView.addAnnotation(annotation)
+                    
+                    //                        var center = CLLocationCoordinate2D(latitude: 15.0, longitude: 17.0)
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 250, 250)
+                    self.mapView.setRegion(region, animated: false)
+                }
+            }
+            
+        })
     }
+    
+//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        if indexPath.row == 0 {
+//            return indexPath
+//        } else {
+//            return nil
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
@@ -114,8 +130,29 @@ class AddWishTableViewController: UITableViewController, UIImagePickerController
     }
     
     
-    @IBAction func addNewWish(_ sender: UIBarButtonItem) {
+    @IBAction func getMyLocation(_ sender: Any) {
+        LocationManager.shared.startUpdatingLocation(completion: { (locations, error) in
+            if let location = locations.first {
+                print("coordinate: \(location.coordinate)")
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+                    if let placemark = placemarks?.first {
+                        if let addressLines = placemark.addressDictionary?["FormattedAddressLines"] as? [String] {
+                            let  location = "\(addressLines[0]) \(addressLines[1])"
+                            print(location)
+                            self.configureMap(location: location)
+                            self.wishLocationTextField.text = location
+                        }
+                    }
+                })
+            }
+        })
         
+    }
+    
+    
+    @IBAction func addNewWish(_ sender: UIBarButtonItem) {
+ 
         if let name = wishNameTextField.text, let location = wishLocationTextField.text, let price = Float(wishPriceTextField.text!) {
             if wishToEdit == nil { // we are adding a new wish
                 let newWish = Wish(name: name, location: location, price: price, thumbnail: wishImageView.image!)
