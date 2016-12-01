@@ -47,4 +47,24 @@ class WishStore {
         return results
     }
     
+    init() {
+        print("Loading wishlist from \(wishlistArchiveURL().path)")
+        // load the wishlist from a file
+        
+        if let data = NSKeyedUnarchiver.unarchiveObject(withFile: wishlistArchiveURL().path) as? [Wish] {
+            wishlist = data
+        }
+    }
+    
+    func saveWishlist() {
+        UserDefaults.standard.set(true, forKey: "isDataAlreadySaved")
+        NSKeyedArchiver.archiveRootObject(wishlist, toFile: self.wishlistArchiveURL().path)
+        print("wishlist saved to the file")
+    }
+    
+    func wishlistArchiveURL() -> URL {
+        let documentPaths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return documentPaths[0].appendingPathComponent("wishlist.plist")
+    }
+    
  }

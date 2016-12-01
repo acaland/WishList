@@ -8,6 +8,14 @@
 
 import UIKit
 
+let lazyProp: String = {
+    print("inizialization of the property")
+    return "Hello lazy ones"
+}()
+
+
+
+
 class WishlistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, AddWishTableViewControllerDelegate {
 
     var wishStore: WishStore!
@@ -15,13 +23,19 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
     var searchController: UISearchController!
    
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+       
         
-        wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti Polinesia Francese", price: 4000.0, thumbnail: UIImage(named: "tahiti")!))
-        wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Via Curiel 25, Rozzano", price: 2500.0, thumbnail: UIImage(named: "macbookpro")!))
-        wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano, Napoli", price: 1500.00, thumbnail: UIImage(named: "stratocaster")!))
+        if !UserDefaults.standard.bool(forKey: "isDataAlreadySaved") {
+            wishStore.add(aWish: Wish(name: "Fligth to Tahiti", location: "Tahiti Polinesia Francese", price: 4000.0, thumbnail: UIImage(named: "tahiti")!))
+            wishStore.add(aWish: Wish(name: "Macbook Pro 13", location: "Via Curiel 25, Rozzano", price: 2500.0, thumbnail: UIImage(named: "macbookpro")!))
+            wishStore.add(aWish: Wish(name: "Fender Stratocaster", location: "Via San Sebastiano, Napoli", price: 1500.00, thumbnail: UIImage(named: "stratocaster")!))
+        }
+        
+        
     
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -129,6 +143,7 @@ class WishlistViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     @IBAction func toggleEditMode(_ sender: UIBarButtonItem) {
+        print(lazyProp)
         if tableView.isEditing {
             // revert to not editing mode
             tableView.setEditing(false, animated: true)

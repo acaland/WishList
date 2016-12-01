@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Wish {
+class Wish: NSObject, NSCoding {
     var name: String
     var location: String
     var price: Float 
@@ -20,4 +20,21 @@ class Wish {
         self.price = price
         self.thumbnail = thumbnail
     }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(location, forKey: "location")
+        aCoder.encode(price, forKey: "price")
+        aCoder.encode(UIImageJPEGRepresentation(thumbnail!, 0.5), forKey: "thumbnail")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.name = aDecoder.decodeObject(forKey: "name") as! String
+        self.location = aDecoder.decodeObject(forKey: "location") as! String
+        self.price = aDecoder.decodeFloat(forKey: "price")
+        let imageData = aDecoder.decodeObject(forKey: "thumbnail") as! Data 
+        self.thumbnail = UIImage(data: imageData)
+    }
+    
+    
 }
